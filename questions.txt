@@ -1,0 +1,33 @@
+0.  The longest word in the large dictionary
+1.  It returns information describing the resources used by the current process
+2.  16
+3.  Because the function's signature requires a pointer to a struct be passed
+4.  The for loop's initialization assigns an int c to the return value of fgetc;
+	fgetc takes a file stream as input and gets the next character from the
+	stream. As long as the character returned is not the EOF character (per the
+	termination condition) the for loop will continue reassigning c to the next
+	character in the stream. When fgetc returns EOF the loop exits. Within the
+	for loop some conditions check whether the character is alphabetical and if
+	it is it pushes the char into its current array of characters. If it finds
+	a character that is not alphabetical or an apostrophe it throws the word
+	away. If it finds a character that is not alphanumeric or apostrophe then
+	it assumes that it has found a complete word, so it pushes the terminating
+	NULL character to the current array and moves to the next word by resetting
+	the index to 0 and incrementing the words counter.
+5.  TODO
+6.  TODO
+7.  I used a hash table with linked lists of nodes each containing an array of
+	characters and a pointer to another node. Both members of the struct are
+	initialized to NULL. The table itself was implemented as an array of
+	pointers to nodes. On insertion of a word the node at the index of the
+	word's hash is checked to see if it is empty; if it is then the word can be
+	inserted directly; otherwise the insert function recursively searches the
+	list until it finds an empty node in which to insert the word.
+8.  Around .15 to .2 seconds
+9.  I made changes to correct memory access errors detected by valgrind but no
+	performance-only changes.
+10. Compared to the CS50 implementation, my load function takes about twice as
+	long (~.1s vs ~.05 on my machine), so this would be where I would focus my
+	efforts. However, my free function runs much faster than the CS50 version
+	(.01-.02s vs .08-.09s) so overall my program runs only a few hundredths of
+	a second behind the CS50 implementation on average.
