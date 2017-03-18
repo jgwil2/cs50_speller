@@ -5,25 +5,25 @@
 #define M 143093
 
 // node for linked list
-struct node;
-typedef struct node node;
+struct listNode;
+typedef struct listNode listNode;
 
 // init table
-void initTable(node* hashtable[]);
+void initTable(listNode* hashtable[]);
 
 // generate an int from a string for insertion into hashtable
 int hash(char* key);
 
 // given head of list and key, insert key into list
-void addToList(node* slot, char* key);
+void addToList(listNode* slot, char* key);
 
 // given head of list and key, return true if key in list
-bool searchList(node* slot, char* key);
+bool searchList(listNode* slot, char* key);
 
-// given head of list, return number of nodes in list with data
-int countList(node* slot);
+// given head of list, return number of listNodes in list with data
+int countList(listNode* slot);
 
 // free all memory in list
-void destroyList(node* slot);
+void destroyList(listNode* slot);
 
-#endif 
+#endif

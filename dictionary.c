@@ -17,7 +17,7 @@
 #include "hash.h"
 
 // declare table in file scope
-node* hashtable[M];
+listNode* hashtable[M];
 
 /**
  * Returns true if word is in dictionary else false.

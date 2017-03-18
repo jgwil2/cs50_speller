@@ -6,17 +6,17 @@
 #include "dictionary.h"
 
 // linked list code
-typedef struct node
+typedef struct listNode
 {
     char word[LENGTH + 1];
-    struct node* next;
-} node;
+    struct listNode* next;
+} listNode;
 
 // init table
-void initTable(node* hashtable[])
+void initTable(listNode* hashtable[])
 {
     for (int i = 0; i < M; i++) {
-        hashtable[i] = malloc(sizeof(node));
+        hashtable[i] = malloc(sizeof(listNode));
         hashtable[i]->word[0] = '\0';
         hashtable[i]->next = NULL;
     }
@@ -35,19 +35,19 @@ int hash(char* key)
 }
 
 // given head of list and key, insert key into list
-void addToList(node* slot, char* key)
+void addToList(listNode* slot, char* key)
 {
-    // check node at key, if it is blank insert,
+    // check listNode at key, if it is blank insert,
     // else traverse and insert
     if (slot->word[0] == '\0')
     {
         strcpy(slot->word, key);
         return;
     }
-    // make sure not to overwrite next node
+    // make sure not to overwrite next listNode
     if (slot->next == NULL)
     {
-        slot->next = malloc(sizeof(node));
+        slot->next = malloc(sizeof(listNode));
         slot->next->word[0] = '\0';
         slot->next->next = NULL;
     }
@@ -55,7 +55,7 @@ void addToList(node* slot, char* key)
 }
 
 // given head of list and key, return true if key in list
-bool searchList(node* slot, char* key)
+bool searchList(listNode* slot, char* key)
 {
     if (strcmp(slot->word, key) == 0)
     {
@@ -68,8 +68,8 @@ bool searchList(node* slot, char* key)
     return false;
 }
 
-// given head of list, return number of nodes in list with data
-int countList(node* slot)
+// given head of list, return number of listNodes in list with data
+int countList(listNode* slot)
 {
     if (slot->word[0] != '\0' && slot->next != NULL)
     {
@@ -85,7 +85,7 @@ int countList(node* slot)
 }
 
 // free all memory in list
-void destroyList(node* slot)
+void destroyList(listNode* slot)
 {
     if (slot->next != NULL) {
         destroyList(slot->next);
